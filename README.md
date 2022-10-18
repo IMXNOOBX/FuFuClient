@@ -1,12 +1,15 @@
-# 🎡 FuFu Client
+# 🎡 FuFu Client / mcv1.19.2
 
-[![Build Status](https://github.com/IMXNOOBX/green-commits/workflows/ci/badge.svg?branch=master)](https://github.com/IMXNOOBX/green-commits/actions)
+[![Build Status](https://github.com/IMXNOOBX/FuFuClient/workflows/build/badge.svg?branch=main)](https://github.com/IMXNOOBX/FuFuClient/actions)
 
-A BlockGame client mod I made with the pourpose of learning java and playing in LiveOverflow's server.
+A BlockGame client mod I made with the pourpose of learning java and playing in LiveOverflow's server. Mod idea inspired by LiveOverflow.
+
+<img src=".github/1.1.1.png">
 
 # 📣 Whats New
 
-> Nothing new yet just Fabric Example Mod
+> 1.1.1 - Fixed issue with .gitignore file ignoring gradle-wrapper.jar<br>
+> 1.1.0 - Nothing new yet just Fabric Example Mod
 
 ## 🔺 Features
 
@@ -22,15 +25,18 @@ A BlockGame client mod I made with the pourpose of learning java and playing in 
 
 ## 🪁 Simple Use
 
-***Eclipse***
-
-> gradlew genSources eclipse
-
 ***IntelliJ***
 
 > gradlew genIdeaWorkspace
 
+***Eclipse***
+
+> gradlew genSources eclipse
 
 ***Other IDE's***
 
 Use [this link](https://fabricmc.net/wiki/tutorial:setup) for more information.
+
+***Compile***
+
+> gradlew build
