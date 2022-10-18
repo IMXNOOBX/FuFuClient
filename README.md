@@ -1,9 +1,24 @@
-# Fabric Example Mod
+# 🎡 FuFu Client
 
-## Setup
+[![Build Status](https://github.com/IMXNOOBX/green-commits/workflows/ci/badge.svg?branch=master)](https://github.com/IMXNOOBX/green-commits/actions)
 
-For setup instructions please see the [fabric wiki page](https://fabricmc.net/wiki/tutorial:setup) that relates to the IDE that you are using.
+A BlockGame client mod I made with the pourpose of learning java and playing in LiveOverflow's server.
 
-## License
+# 📣 Whats New
 
-This template is available under the CC0 license. Feel free to learn from it and incorporate it in your own projects.
+> Nothing new yet just Fabric Example Mod
+
+## 🪁 Simple Use
+
+***Eclipse***
+
+> gradlew genSources eclipse
+
+***IntelliJ***
+
+> gradlew genIdeaWorkspace
+
+
+***Other IDE's***
+
+Use [this link](https://fabricmc.net/wiki/tutorial:setup) for more information.
