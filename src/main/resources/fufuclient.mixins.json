@@ -8,7 +8,8 @@
   "client": [
     "MixinClientConnection",
     "MixinGameOptionsScreen",
-    "ExampleMixin"
+    "MixinGameStateChangeS2CPacket",
+    "MixinMain"
   ],
   "injectors": {
     "defaultRequire": 1
