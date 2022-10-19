@@ -21,7 +21,7 @@ import xyz.imxnoobx.fufuclient.modules.*;
 public class FuFuClient implements ModInitializer {
 	public static String name = "FuFuClient";
 	public static String author = "IMXNOOBX";
-	public static String version = "1.1.0";
+	public static String version = "1.1.3";
 	public static String game = "1.19.2";
 	public static final Logger LOGGER = LoggerFactory.getLogger(name);
 
@@ -32,6 +32,7 @@ public class FuFuClient implements ModInitializer {
 	public static boolean fakeCreative = false;
 	public static boolean flightSwitch = false;
 
+	public static boolean waterMark = true;
 
 	public void onInitialize() {
 		LOGGER.info("Hello from FuFuClient");
@@ -57,6 +58,7 @@ public class FuFuClient implements ModInitializer {
 	private static void registerModules(MinecraftClient client) {
 		Flight.tick(client);
 		NightVision.tick(client);
+		Watermark.tick(client);
 	}
 
 	private static void registerCommands(CommandDispatcher<FabricClientCommandSource> commandDispatcher, CommandRegistryAccess commandRegistryAccess) {

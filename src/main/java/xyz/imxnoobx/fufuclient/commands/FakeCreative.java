@@ -18,8 +18,8 @@ public class FakeCreative {
     }
 
     private static int toggleCreative(FabricClientCommandSource source) {
-        FuFuClient.chatLog("FakeCreative: " + (fakeCreative ? "\u00a7aEnabled" : "\u00a7cDisabled"));
         fakeCreative = !fakeCreative;
+        FuFuClient.chatLog("FakeCreative: " + (fakeCreative ? "\u00a7aEnabled" : "\u00a7cDisabled"));
 
         if (mc.player == null)
             return 0;
