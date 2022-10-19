@@ -1,6 +1,11 @@
-# 🎡 FuFu Client / mcv1.19.2
+<center><img style="height: 100px;" src="src/main/resources/assets/fufuclient/fufu.png"></center>
 
-[![Build Status](https://github.com/IMXNOOBX/FuFuClient/workflows/build/badge.svg?branch=main)](https://github.com/IMXNOOBX/FuFuClient/actions)
+
+# 🎡 FuFu Client
+
+<center>
+
+[![Build Status](https://github.com/IMXNOOBX/FuFuClient/workflows/build/badge.svg?branch=main)](https://github.com/IMXNOOBX/FuFuClient/actions) <img src="https://img.shields.io/badge/minecraft-1.19.2-green.svg?style=flat&logo=github"></center>
 
 A BlockGame client mod I made with the purpose of learning java and playing in LiveOverflow's server. Mod idea inspired by LiveOverflow.
 
