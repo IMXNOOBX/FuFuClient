@@ -10,11 +10,13 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.command.CommandRegistryAccess;
+import net.minecraft.text.Text;
 import org.lwjgl.glfw.GLFW;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import xyz.imxnoobx.fufuclient.commands.*;
 import xyz.imxnoobx.fufuclient.gui.OptionsScreen;
+import xyz.imxnoobx.fufuclient.modules.*;
 
 public class FuFuClient implements ModInitializer {
 	public static String name = "FuFuClient";
@@ -27,6 +29,9 @@ public class FuFuClient implements ModInitializer {
 
 	public static boolean humanbypassSwitch = false;
 	public static boolean nightvisionSwitch = false;
+	public static boolean fakeCreative = false;
+	public static boolean flightSwitch = false;
+
 
 	public void onInitialize() {
 		LOGGER.info("Hello from FuFuClient");
@@ -41,11 +46,23 @@ public class FuFuClient implements ModInitializer {
 				client.getInstance().setScreen(new OptionsScreen(null));
 			}
 		});
+
+		ClientTickEvents.START_CLIENT_TICK.register(FuFuClient::registerModules);
+	}
+	// \u00a7 == §
+	public static void chatLog(String text) {
+		mc.player.sendMessage(Text.literal("[\u00a75F\u00a7du\u00a75F\u00a7du\u00a79C\u00a7blient] " + text));
+	}
+
+	private static void registerModules(MinecraftClient client) {
+		Flight.tick(client);
+		NightVision.tick(client);
 	}
 
 	private static void registerCommands(CommandDispatcher<FabricClientCommandSource> commandDispatcher, CommandRegistryAccess commandRegistryAccess) {
 		HumanBypass.register(commandDispatcher);
 		TeleportToCoords.register(commandDispatcher);
+		FakeCreative.register(commandDispatcher);
 	}
 
 }
