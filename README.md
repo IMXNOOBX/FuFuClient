@@ -8,6 +8,7 @@ A BlockGame client mod I made with the purpose of learning java and playing in L
 
 # 📣 Whats New
 
+> 1.1.3 - Added some chat commands, fixed flight anti kick<br>
 > 1.1.2 - Added some new features, NightVision, Flight<br>
 > 1.1.1 - Fixed issue with .gitignore file ignoring gradle-wrapper.jar<br>
 > 1.1.0 - Nothing new yet just Fabric Example Mod
@@ -17,11 +18,11 @@ A BlockGame client mod I made with the purpose of learning java and playing in L
 ```diff
 + Working Features 
 	• NativeUi - Minecraft Native ui to interact with the features. 
-	• Human Bypass - Bypass the anti human plugin in the liveoverflow's server 
-	• NightVision - aka Fulbright
-	• Flight - Flight like a bird, AntiKick and NoFall together
+	• Human Bypass - Bypass the anti human plugin in the liveoverflow's server .
+	• NightVision - aka Fulbright.
+	• Flight - Flight like a bird, AntiKick and NoFall together.
 - To Do
-    • Worldborder Bypass - So you can interact and dont die outside it
+    • WorldBorder Bypass - So you can interact and dont die outside it.
 	• More ideas when i get the ip to join the server :c
 ```
 
@@ -42,3 +43,9 @@ Use [this link](https://fabricmc.net/wiki/tutorial:setup) for more information.
 ***Compile***
 
 > gradlew build
+
+## 🎯 Recommended Mods
+
+***ViaFabric***
+
+> [ViaFabric](https://github.com/ViaVersion/ViaFabric) is the mod I recommend you, to be able to connect to different versions from 1.19.2.

@@ -5,6 +5,7 @@ import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
 
 import static com.mojang.brigadier.arguments.IntegerArgumentType.*;
 import net.minecraft.text.Text;
+import xyz.imxnoobx.fufuclient.FuFuClient;
 
 import static net.fabricmc.fabric.api.client.command.v2.ClientCommandManager.argument;
 import static net.fabricmc.fabric.api.client.command.v2.ClientCommandManager.literal;
@@ -25,7 +26,7 @@ public class TeleportToCoords {
     private static int teleporTo(FabricClientCommandSource source, int x, int y, int z) {
         //mc.player.setPosition(mc.player.getX() + x, mc.player.getY() + y, mc.player.getZ() + z);
         mc.player.setPosition(x, y, z);
-        source.sendFeedback(Text.literal("Teleported to [" + (int) mc.player.getX() + x + " / "+ (int) mc.player.getY() + y + " / " + (int) mc.player.getZ() + z + "]"));
+        FuFuClient.chatLog("Teleported to [" + (int) mc.player.getX() + x + " / "+ (int) mc.player.getY() + y + " / " + (int) mc.player.getZ() + z + "]");
         return 1;
     }
 }

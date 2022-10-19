@@ -31,7 +31,7 @@ public class Flight {
                 if (backwardKey)
                     vel = mc.player.getRotationVector().negate().multiply(aceleration);
                 mc.player.getVehicle().setVelocity(new Vec3d(vel.x, tickCount < 40 ? 0.3 : -0.04, vel.z)); // just so you don't get kicked while flying up
-                if (aceleration < 3.)
+                if (aceleration <= 3.0)
                     aceleration += 0.1;
             } else if (aceleration > 0.3) {
                 aceleration -= 0.2;
@@ -43,10 +43,10 @@ public class Flight {
             tickCount = 0;
 
         if(!mc.player.isOnGround()) {
-            LOGGER.info("AntiKick tickCount: "+tickCount);
+            // LOGGER.info("AntiKick tickCount: "+tickCount);
             tickCount++;
             if (tickCount >= 40) mc.player.setVelocity(mc.player.getVelocity().add(0, -0.04, 0));
-        } else tickCount = 0; mc.player.setVelocity(mc.player.getVelocity().add(0, 0.04, 0));
+        } else tickCount = 0;
 
         if (mc.player.fallDistance > 2.5f) { // no fall damage
             if (mc.player.isFallFlying())
