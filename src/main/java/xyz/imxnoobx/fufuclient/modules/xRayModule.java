@@ -13,7 +13,7 @@ public class xRayModule {
         if(!xRay || mc.player == null)
             return;
 
-        //mc.options.getGamma().setValue(1000.);
+        mc.options.getGamma().setValue(Math.min(mc.options.getGamma().getValue() + 1, 69));
     }
 
     public static void onStart(MinecraftClient mc) {
