@@ -12,7 +12,8 @@ import static xyz.imxnoobx.fufuclient.FuFuClient.humanbypassSwitch;
 public class HumanBypass {
     public static void register(CommandDispatcher<FabricClientCommandSource> dispatcher) {
         dispatcher.register(literal("humanbypass")
-                .executes(context -> toggleBypass(context.getSource())));
+                .executes(context -> toggleBypass(context.getSource())
+                ));
     }
 
     private static int toggleBypass(FabricClientCommandSource source) {

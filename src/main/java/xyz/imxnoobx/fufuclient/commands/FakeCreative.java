@@ -14,7 +14,8 @@ import static xyz.imxnoobx.fufuclient.FuFuClient.mc;
 public class FakeCreative {
     public static void register(CommandDispatcher<FabricClientCommandSource> dispatcher) {
         dispatcher.register(literal("fakecreative")
-                .executes(context -> toggleCreative(context.getSource())));
+                .executes(context -> toggleCreative(context.getSource()))
+        );
     }
 
     private static int toggleCreative(FabricClientCommandSource source) {

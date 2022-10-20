@@ -7,6 +7,7 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.text.Text;
 import net.minecraft.world.GameMode;
 import xyz.imxnoobx.fufuclient.FuFuClient;
+import xyz.imxnoobx.fufuclient.modules.xRayModule;
 
 import static xyz.imxnoobx.fufuclient.FuFuClient.*;
 
@@ -41,14 +42,20 @@ public class OptionsScreen extends Screen {
             flightSwitch = !flightSwitch;
             clearAndInit();
         }));
-        addDrawableChild(new ButtonWidget(this.width / 2 - 102, this.height / 6 + 124 - BUTTON_VERICAL_SPACING, INGAME_FULL_BUTTON_WIDTH, 20, Text.literal("NightVision is " + (nightvisionSwitch ? "\u00a7aEnabled" : "\u00a7cDisabled")), button -> {
+        addDrawableChild(new ButtonWidget(this.width / 2 - 102, this.height / 6 + BUTTON_VERICAL_SPACING * 2, INGAME_FULL_BUTTON_WIDTH, 20, Text.literal("NightVision is " + (nightvisionSwitch ? "\u00a7aEnabled" : "\u00a7cDisabled")), button -> {
             FuFuClient.LOGGER.info("Button Clicked, Toggling NightVision!");
             nightvisionSwitch = !nightvisionSwitch;
             if (!nightvisionSwitch && mc.player != null)
                 mc.player.removeStatusEffect(StatusEffects.NIGHT_VISION);
             clearAndInit();
         }));
-        addDrawableChild(new ButtonWidget(this.width / 2 - 102, this.height / 6 + 124, INGAME_FULL_BUTTON_WIDTH, 20, Text.literal("HumanBypass is " + (humanbypassSwitch ? "\u00a7aEnabled" : "\u00a7cDisabled")), button -> {
+        addDrawableChild(new ButtonWidget(this.width / 2 - 102, this.height / 6 + BUTTON_VERICAL_SPACING * 3, INGAME_FULL_BUTTON_WIDTH, 20, Text.literal("Xray is " + (xRay ? "\u00a7aEnabled" : "\u00a7cDisabled")), button -> {
+            FuFuClient.LOGGER.info("Button Clicked, Toggling Xray!");
+            xRay = !xRay;
+            if(xRay) xRayModule.onStart(mc); else xRayModule.onDisable(mc);
+            clearAndInit();
+        }));
+        addDrawableChild(new ButtonWidget(this.width / 2 - 102, this.height / 6 + BUTTON_VERICAL_SPACING * 4, INGAME_FULL_BUTTON_WIDTH, 20, Text.literal("HumanBypass is " + (humanbypassSwitch ? "\u00a7aEnabled" : "\u00a7cDisabled")), button -> {
             FuFuClient.LOGGER.info("Button Clicked, Toggling HumanBypass!");
             humanbypassSwitch = !humanbypassSwitch;
             clearAndInit();

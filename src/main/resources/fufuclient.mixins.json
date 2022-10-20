@@ -9,6 +9,8 @@
     "MixinClientConnection",
     "MixinGameOptionsScreen",
     "MixinGameStateChangeS2CPacket",
+    "MixinGameInfo",
+    "MixinBlock",
     "MixinMain"
   ],
   "injectors": {
