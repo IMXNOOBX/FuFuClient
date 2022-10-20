@@ -15,6 +15,7 @@ A BlockGame client mod I made with the purpose of learning java and playing in L
 
 # 📣 Whats New
 
+> 1.1.4 - Added watermak, coordinates, server... while in game<br>
 > 1.1.3 - Added some chat commands, fixed flight anti kick<br>
 > 1.1.2 - Added some new features, NightVision, Flight<br>
 > 1.1.1 - Fixed issue with .gitignore file ignoring gradle-wrapper.jar<br>
@@ -28,6 +29,12 @@ A BlockGame client mod I made with the purpose of learning java and playing in L
 	• Human Bypass - Bypass the anti human plugin in the liveoverflow's server .
 	• NightVision - aka Fulbright.
 	• Flight - Flight like a bird, AntiKick and NoFall together.
+	• XRay - Simple based xRay mod.
+	• Chat Commands: 
+	    - FakeCreative, idk what was i thinking while adding this.
+	    - Teleport, Teleport to coordinates.
+	    - Watermak, toggles in game items while i make each item toggle.
+	    - WorldBorder, Noob attempts to bypass the world border. (Tested in SP and in a local server, DOESNT WORK :D)
 - To Do
     • WorldBorder Bypass - So you can interact and dont die outside it.
 	• More ideas when i get the ip to join the server :c

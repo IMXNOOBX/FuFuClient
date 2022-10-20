@@ -14,12 +14,13 @@ import net.minecraft.text.Text;
 import org.lwjgl.glfw.GLFW;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import xyz.imxnoobx.fufuclient.commands.*;
 import xyz.imxnoobx.fufuclient.gui.OptionsScreen;
+import xyz.imxnoobx.fufuclient.commands.*;
 import xyz.imxnoobx.fufuclient.modules.*;
 
 public class FuFuClient implements ModInitializer {
 	public static String name = "FuFuClient";
+	public static String colorName = "\u00a75F\u00a7du\u00a75F\u00a7du\u00a79C\u00a7blient\u00a7f";
 	public static String author = "IMXNOOBX";
 	public static String version = "1.1.3";
 	public static String game = "1.19.2";
@@ -31,8 +32,9 @@ public class FuFuClient implements ModInitializer {
 	public static boolean nightvisionSwitch = false;
 	public static boolean fakeCreative = false;
 	public static boolean flightSwitch = false;
-
 	public static boolean waterMark = true;
+	public static boolean worldBorder = false;
+	public static boolean xRay = false;
 
 	public void onInitialize() {
 		LOGGER.info("Hello from FuFuClient");
@@ -52,19 +54,21 @@ public class FuFuClient implements ModInitializer {
 	}
 	// \u00a7 == §
 	public static void chatLog(String text) {
-		mc.player.sendMessage(Text.literal("[\u00a75F\u00a7du\u00a75F\u00a7du\u00a79C\u00a7blient] " + text));
+		mc.player.sendMessage(Text.literal("[" + colorName+ "] " + text));	
 	}
 
 	private static void registerModules(MinecraftClient client) {
 		Flight.tick(client);
 		NightVision.tick(client);
-		Watermark.tick(client);
+		xRayModule.tick(client);
 	}
 
 	private static void registerCommands(CommandDispatcher<FabricClientCommandSource> commandDispatcher, CommandRegistryAccess commandRegistryAccess) {
 		HumanBypass.register(commandDispatcher);
 		TeleportToCoords.register(commandDispatcher);
 		FakeCreative.register(commandDispatcher);
+		WaterMark.register(commandDispatcher);
+		WorldBorder.register(commandDispatcher);
 	}
 
 }

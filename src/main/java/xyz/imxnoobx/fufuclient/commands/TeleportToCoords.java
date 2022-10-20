@@ -20,13 +20,16 @@ public class TeleportToCoords {
                 .then(argument("x", integer())
                         .then(argument("y", integer())
                                 .then(argument("z", integer())
-                .executes(context -> teleporTo(context.getSource(), getInteger(context, "x"), getInteger(context, "y"), getInteger(context, "z")))))));
+                .executes(context -> teleporTo(context.getSource(), getInteger(context, "x"), getInteger(context, "y"), getInteger(context, "z")))
+                                ))));
     }
 
     private static int teleporTo(FabricClientCommandSource source, int x, int y, int z) {
         //mc.player.setPosition(mc.player.getX() + x, mc.player.getY() + y, mc.player.getZ() + z);
         mc.player.setPosition(x, y, z);
-        FuFuClient.chatLog("Teleported to [" + (int) mc.player.getX() + x + " / "+ (int) mc.player.getY() + y + " / " + (int) mc.player.getZ() + z + "]");
+        String formatCoords = String.format("%.0fx, %.0fy, %.0fz", mc.player.getX() + x, mc.player.getY() + y, mc.player.getZ() + z);
+
+        FuFuClient.chatLog("Teleported to [\u00a77" + formatCoords + "\u00a7f]");
         return 1;
     }
 }

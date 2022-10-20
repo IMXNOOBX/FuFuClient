@@ -12,6 +12,5 @@ public class NightVision {
             return;
 
         mc.player.addStatusEffect(new StatusEffectInstance(StatusEffects.NIGHT_VISION, 500, 0));
-
     }
 }

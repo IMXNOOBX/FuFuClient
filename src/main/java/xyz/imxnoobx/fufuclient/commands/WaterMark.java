@@ -10,7 +10,8 @@ import static xyz.imxnoobx.fufuclient.FuFuClient.waterMark;
 public class WaterMark {
     public static void register(CommandDispatcher<FabricClientCommandSource> dispatcher) {
         dispatcher.register(literal("watermark")
-                .executes(context -> toggleBypass(context.getSource())));
+                .executes(context -> toggleBypass(context.getSource()))
+        );
     }
 
     private static int toggleBypass(FabricClientCommandSource source) {
