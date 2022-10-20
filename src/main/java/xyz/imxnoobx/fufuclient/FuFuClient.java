@@ -22,7 +22,7 @@ public class FuFuClient implements ModInitializer {
 	public static String name = "FuFuClient";
 	public static String colorName = "\u00a75F\u00a7du\u00a75F\u00a7du\u00a79C\u00a7blient\u00a7f";
 	public static String author = "IMXNOOBX";
-	public static String version = "1.1.3";
+	public static String version = "1.1.4";
 	public static String game = "1.19.2";
 	public static final Logger LOGGER = LoggerFactory.getLogger(name);
 
