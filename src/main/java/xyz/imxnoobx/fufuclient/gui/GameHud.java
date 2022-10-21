@@ -81,7 +81,7 @@ public class GameHud {
         String direction = facing.asString() + " " + getOffset(facing);
 
         if (waterMark) {
-            String coordsFormat = "%.0f, %.0f, %.0f";
+            String coordsFormat = "\u00a78%.0f, %.0f, %.0f";
             coordDirectionStatus += String.format(coordsFormat, this.player.getX(), this.player.getY(), this.player.getZ());
 
             if (waterMark) {
@@ -97,9 +97,9 @@ public class GameHud {
         if (waterMark) {
             String coordsFormat = "X: %.0f, Y: %.0f, Z: %.0f";
             if (this.player.getWorld().getRegistryKey().getValue().toString().equals("minecraft:overworld")) {
-                gameInfo.add("Nether: " + String.format(coordsFormat, this.player.getX() / 8, this.player.getY() / 8, this.player.getZ() / 8));
+                gameInfo.add("Nether: " + String.format(coordsFormat, this.player.getX() / 8, this.player.getY(), this.player.getZ() / 8));
             } else if (this.player.getWorld().getRegistryKey().getValue().toString().equals("minecraft:the_nether")) {
-                gameInfo.add("Overworld: " + String.format(coordsFormat, this.player.getX() * 8, this.player.getY() * 8, this.player.getZ() * 8));
+                gameInfo.add("Overworld: " + String.format(coordsFormat, this.player.getX() * 8, this.player.getY(), this.player.getZ() * 8));
             }
         }
 
@@ -116,7 +116,7 @@ public class GameHud {
         if (waterMark) {
             String serverName = "Singleplayer";
             try {
-                serverName = client.getCurrentServerEntry().name;
+                serverName = client.getCurrentServerEntry().address;
             } catch (Exception e) { }
             gameInfo.add(serverName);
         }
