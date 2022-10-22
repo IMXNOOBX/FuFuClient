@@ -66,90 +66,54 @@ public class GameHud {
     }
 
     private void drawWatermak() {
-        // Draw lines of Array of Game info in the screen
         int top = 0;
         int left = 4;
 
-        this.fontRenderer.drawWithShadow(this.matrixStack, FuFuClient.colorName, left, top + 4, 0x00E0E0E0);
+        this.fontRenderer.drawWithShadow(this.matrixStack, FuFuClient.colorName + " - " + FuFuClient.version, left, top + 4, 0x00E0E0E0);
     }
 
     private List<String> getGameInfo() {
         List<String> gameInfo = new ArrayList<>();
 
         String coordDirectionStatus = "";
-        Direction facing = this.player.getHorizontalFacing();
-        String direction = facing.asString() + " " + getOffset(facing);
+        String direction = this.player.getHorizontalFacing().asString();
 
         if (waterMark) {
-            String coordsFormat = "\u00a78%.0f, %.0f, %.0f";
+            String coordsFormat = "%.0f, %.0f, %.0f";
+            if (this.player.getWorld().getRegistryKey().getValue().toString().equals("minecraft:overworld")) {
+                gameInfo.add("\u00a7cNether: \u00a7f" + String.format(coordsFormat, this.player.getX() / 8, this.player.getY(), this.player.getZ() / 8));
+            } else if (this.player.getWorld().getRegistryKey().getValue().toString().equals("minecraft:the_nether")) {
+                gameInfo.add("\u00a7aOverworld: \u00a7f" + String.format(coordsFormat, this.player.getX() * 8, this.player.getY(), this.player.getZ() * 8));
+            }
+        }
+
+
+        if (waterMark) {
+            String coordsFormat = "%.0f, %.0f, %.0f";
             coordDirectionStatus += String.format(coordsFormat, this.player.getX(), this.player.getY(), this.player.getZ());
 
             if (waterMark) {
                 coordDirectionStatus += " (" + direction + ")";
             }
-        } else if (!waterMark) {
-            coordDirectionStatus += direction;
         }
 
-        gameInfo.add(coordDirectionStatus);
+        gameInfo.add("\u00a78Cords: \u00a7f"+coordDirectionStatus);
 
-
-        if (waterMark) {
-            String coordsFormat = "X: %.0f, Y: %.0f, Z: %.0f";
-            if (this.player.getWorld().getRegistryKey().getValue().toString().equals("minecraft:overworld")) {
-                gameInfo.add("Nether: " + String.format(coordsFormat, this.player.getX() / 8, this.player.getY(), this.player.getZ() / 8));
-            } else if (this.player.getWorld().getRegistryKey().getValue().toString().equals("minecraft:the_nether")) {
-                gameInfo.add("Overworld: " + String.format(coordsFormat, this.player.getX() * 8, this.player.getY(), this.player.getZ() * 8));
-            }
-        }
 
         if (false) {
-            // Get everything from fps debug string until the 's' from 'fps'
             // gameInfo.add(client.fpsDebugString.substring(0, client.fpsDebugString.indexOf("s") + 1));
-            //gameInfo.add(String.format("%d fps", ((GameClientMixin) MinecraftClient.getInstance()).getCurrentFps()));
+            // gameInfo.add(String.format("%d fps", ((GameClientMixin) MinecraftClient.getInstance()).getCurrentFps()));
         }
 
         if (waterMark) {
-            gameInfo.add(player.getEntityName());
-        }
-
-        if (waterMark) {
-            String serverName = "Singleplayer";
+            String serverName = "Single Player";
             try {
                 serverName = client.getCurrentServerEntry().address;
             } catch (Exception e) { }
-            gameInfo.add(serverName);
-        }
-        /*
-        if (waterMark) {
-            String serverIp = "N/A";
-            try {
-                serverIp = client.getCurrentServerEntry().address;
-            } catch (Exception e) {
 
-            }
-            gameInfo.add(serverIp);
-        }*/
+            gameInfo.add("\u00a78Server: \u00a7f"+serverName);
+        }
 
         return gameInfo;
     }
-
-    private String getOffset(Direction facing) {
-        String offset = "";
-
-        if (facing.getOffsetX() > 0) {
-            offset += "+X";
-        } else if (facing.getOffsetX() < 0) {
-            offset += "-X";
-        }
-
-        if (facing.getOffsetZ() > 0) {
-            offset += " +Z";
-        } else if (facing.getOffsetZ() < 0) {
-            offset += " -Z";
-        }
-
-        return offset.trim();
-    }
-
 }

@@ -11,7 +11,9 @@
     "MixinGameStateChangeS2CPacket",
     "MixinGameInfo",
     "MixinBlock",
-    "MixinMain"
+    "MixinMain",
+    "MixinWorldBorder",
+    "MixinPlayerMoveC2SPacket"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -23,8 +23,8 @@ public class MixinGameOptionsScreen extends Screen {
     @Inject(method = "init", at = @At("RETURN"))
     private void init(CallbackInfo callback) {
         addDrawableChild(new ButtonWidget(10, 10, 100, 20, Text.literal("FuFu Client"), button -> {
-            client.setScreen(new OptionsScreen(this));
             FuFuClient.LOGGER.info("Button Clicked!, Going to the Options screen!");
+            client.setScreen(new OptionsScreen(this));
         }));
     }
 }

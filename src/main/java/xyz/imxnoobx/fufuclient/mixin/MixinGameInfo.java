@@ -28,15 +28,12 @@ public class MixinGameInfo {
 
     @Inject(method = "<init>(Lnet/minecraft/client/MinecraftClient;Lnet/minecraft/client/render/item/ItemRenderer;)V", at = @At(value = "RETURN"))
     private void onInit(MinecraftClient client, ItemRenderer render, CallbackInfo ci) {
-        // Start Mixin
-        System.out.println("Init Coordinates Mixin");
         this.hudInfo = new GameHud(client);
     }
 
     @Inject(method = "render", at = @At("HEAD"))
     private void onDraw(MatrixStack matrixStack, float esp, CallbackInfo ci) {
         if (waterMark) {
-            // Draw Game info on every GameHud render
             this.hudInfo.draw(matrixStack);
         }
     }
