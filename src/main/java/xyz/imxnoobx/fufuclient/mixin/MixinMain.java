@@ -20,11 +20,8 @@ public class MixinMain {
 	}
 
 
-	/*@Inject(at = @At("HEAD"), method = "tick()V") // only executed in the main menu
+	/*@Inject(at = @At("HEAD"), method = "tick()V") // only executed in the main menu (TitleScreen)
 	private void onTick(CallbackInfo info) {
 		LOGGER.info("tick executed");
-
-		Flight.tick();
-		NightVision.tick();
 	}*/
 }

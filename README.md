@@ -11,10 +11,11 @@
 
 A BlockGame client mod I made with the purpose of learning java and playing in LiveOverflow's server. Mod idea inspired by LiveOverflow.
 
-<img src=".github/1.1.1.png">
+<img src=".github/1.1.5.png">
 
 # 📣 Whats New
 
+> 1.1.5 - Fixed many issues, implemented kaihack's bypass, improved xray<br>
 > 1.1.4 - Added watermak, coordinates, server... while in game<br>
 > 1.1.3 - Added some chat commands, fixed flight anti kick<br>
 > 1.1.2 - Added some new features, NightVision, Flight<br>

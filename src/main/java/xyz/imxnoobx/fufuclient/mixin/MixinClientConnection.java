@@ -33,7 +33,7 @@ public class MixinClientConnection {
     @ModifyVariable(method = "sendImmediately", at = @At ("HEAD"), ordinal = 0) // Modify outgoing packets
     private Packet<?> modifyPacket(Packet<?> packet) { // Credits https://github.com/jokil123/liveoverflow-utility-mod
 
-        if (FuFuClient.humanbypassSwitch && packet  instanceof PlayerMoveC2SPacket) {
+        /*if (FuFuClient.humanbypassSwitch && packet  instanceof PlayerMoveC2SPacket) {
             PlayerMoveC2SPacket bypass = (PlayerMoveC2SPacket) packet;
 
             return new PlayerMoveC2SPacket.Full(
@@ -60,7 +60,7 @@ public class MixinClientConnection {
                     p.getTeleportId(),
                     p.shouldDismount()
             );
-        }
+        }*/
 
         return packet;
 
@@ -103,7 +103,7 @@ public class MixinClientConnection {
             PlayerMoveC2SPacket p = (PlayerMoveC2SPacket) packet;
                 //callback.cancel();
 
-                FuFuClient.mc.player.networkHandler.sendPacket(
+                FuFuClient.mc.player.networkHan dler.sendPacket(
                     new PlayerMoveC2SPacket.Full(
                         Math.round(p.getX(0) * 100.0) / 100.0,
                         p.getY(0),
