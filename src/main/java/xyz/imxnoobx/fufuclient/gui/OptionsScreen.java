@@ -21,6 +21,11 @@ public class OptionsScreen extends Screen {
     private static final int BUTTON_HEIGHT = 20;
     private static final int BUTTON_VERICAL_SPACING = 24;
 
+    private static double dmgPerblock;
+    private static int warnPerblock;
+    private static double size;
+    private static double getSafe;
+
     private boolean initIsProcessing;
     public OptionsScreen(Screen parent) {
         super(Text.literal("Hack Options"));
@@ -55,9 +60,42 @@ public class OptionsScreen extends Screen {
             if(xRay) xRayModule.onStart(mc); else xRayModule.onDisable(mc);
             clearAndInit();
         }));
-        addDrawableChild(new ButtonWidget(this.width / 2 - 102, this.height / 6 + BUTTON_VERICAL_SPACING * 4, INGAME_FULL_BUTTON_WIDTH, 20, Text.literal("HumanBypass is " + (humanbypassSwitch ? "\u00a7aEnabled" : "\u00a7cDisabled")), button -> {
-            FuFuClient.LOGGER.info("Button Clicked, Toggling HumanBypass!");
-            humanbypassSwitch = !humanbypassSwitch;
+        // addDrawableChild(new ButtonWidget(this.width / 2 - 102, this.height / 6 + BUTTON_VERICAL_SPACING * 4, INGAME_FULL_BUTTON_WIDTH, 20, Text.literal("HumanBypass is " + (humanbypassSwitch ? "\u00a7aEnabled" : "\u00a7cDisabled")), button -> {
+        //     FuFuClient.LOGGER.info("Button Clicked, Toggling HumanBypass!");
+        //     humanbypassSwitch = !humanbypassSwitch;
+        //     clearAndInit();
+        // }));
+        addDrawableChild(new ButtonWidget(this.width - 204 + 10, this.height / 6 + BUTTON_VERICAL_SPACING * 4, INGAME_FULL_BUTTON_WIDTH, 20, Text.literal("Mode " + (FuFuMode == 0 ? "\u00a7cDisabled" : "\u00a7aLiveOverflow")), button -> {
+            FuFuClient.LOGGER.info("Button Clicked, Switching FuFuMode!");
+            FuFuMode++; if(FuFuMode > 1) FuFuMode = 0;
+
+            switch (FuFuMode) {
+                case 1: // LiveOverflow
+                    mc.interactionManager.setGameMode(GameMode.byId(0)); 
+                    FuFuClient.chatLog("Creative Bypass: " + (FuFuMode == 1 ? "\u00a7aEnabled" : "\u00a7cDisabled"));
+                    
+                    dmgPerblock = mc.world.getWorldBorder().getDamagePerBlock();
+                    warnPerblock = mc.world.getWorldBorder().getWarningBlocks();
+                    size = mc.world.getWorldBorder().getSize();
+                    getSafe = mc.world.getWorldBorder().getSafeZone();
+                    mc.world.getWorldBorder().setWarningBlocks(0);
+                    mc.world.getWorldBorder().setDamagePerBlock(0);
+                    mc.world.getWorldBorder().setSize(Integer.MAX_VALUE);
+                    mc.world.getWorldBorder().setSafeZone(Integer.MAX_VALUE);
+                    FuFuClient.chatLog("WorldBorder Bypass: " + (FuFuMode == 1 ? "\u00a7aEnabled" : "\u00a7cDisabled"));
+                    break;
+                default:
+                    mc.interactionManager.setGameMode(mc.interactionManager.getPreviousGameMode());
+                    FuFuClient.chatLog("Creative Bypass: " + (FuFuMode == 1 ? "\u00a7aEnabled" : "\u00a7cDisabled"));
+
+
+                    mc.world.getWorldBorder().setWarningBlocks(warnPerblock);
+                    mc.world.getWorldBorder().setDamagePerBlock(dmgPerblock);
+                    mc.world.getWorldBorder().setSize(size);
+                    mc.world.getWorldBorder().setSafeZone(getSafe);
+                    FuFuClient.chatLog("WorldBorder Bypass: " + (FuFuMode == 1 ? "\u00a7aEnabled" : "\u00a7cDisabled"));
+                    break;
+            }
             clearAndInit();
         }));
 

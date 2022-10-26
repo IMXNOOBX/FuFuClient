@@ -14,9 +14,10 @@ import xyz.imxnoobx.fufuclient.FuFuClient;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.security.*;
 
 import static xyz.imxnoobx.fufuclient.FuFuClient.mc;
-import static xyz.imxnoobx.fufuclient.FuFuClient.waterMark;
+import static xyz.imxnoobx.fufuclient.FuFuClient.*;
 @Environment(EnvType.CLIENT)
 public class GameHud {
     private final MinecraftClient client;
@@ -37,7 +38,7 @@ public class GameHud {
     }
 
     public void draw(MatrixStack matrixStack) {
-        if (!waterMark) return;
+        if (!hud) return;
 
         this.player = this.client.player;
 
@@ -45,7 +46,7 @@ public class GameHud {
 
         RenderSystem.enableBlend();
 
-        this.drawWatermak();
+        if(hudWatermak) this.drawWatermak();
         this.drawInfo();
 
         this.client.getProfiler().pop();
@@ -78,7 +79,7 @@ public class GameHud {
         String coordDirectionStatus = "";
         String direction = this.player.getHorizontalFacing().asString();
 
-        if (waterMark) {
+        if (hudCoords) {
             String coordsFormat = "%.0f, %.0f, %.0f";
             if (this.player.getWorld().getRegistryKey().getValue().toString().equals("minecraft:overworld")) {
                 gameInfo.add("\u00a7cNether: \u00a7f" + String.format(coordsFormat, this.player.getX() / 8, this.player.getY(), this.player.getZ() / 8));
@@ -88,13 +89,13 @@ public class GameHud {
         }
 
 
-        if (waterMark) {
+        if (hudCoords) {
             String coordsFormat = "%.0f, %.0f, %.0f";
             coordDirectionStatus += String.format(coordsFormat, this.player.getX(), this.player.getY(), this.player.getZ());
 
-            if (waterMark) {
-                coordDirectionStatus += " (" + direction + ")";
-            }
+            // if (waterMark) {
+            //     coordDirectionStatus += " (" + direction + ")";
+            // }
         }
 
         gameInfo.add("\u00a78Cords: \u00a7f"+coordDirectionStatus);
@@ -105,7 +106,7 @@ public class GameHud {
             // gameInfo.add(String.format("%d fps", ((GameClientMixin) MinecraftClient.getInstance()).getCurrentFps()));
         }
 
-        if (waterMark) {
+        if (hudIP) {
             String serverName = "Single Player";
             try {
                 serverName = client.getCurrentServerEntry().address;

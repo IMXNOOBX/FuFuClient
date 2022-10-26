@@ -1,0 +1,49 @@
+package xyz.imxnoobx.fufuclient.commands;
+
+import com.mojang.brigadier.CommandDispatcher;
+import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
+import xyz.imxnoobx.fufuclient.FuFuClient;
+// import static com.mojang.brigadier.arguments.;
+
+import static net.fabricmc.fabric.api.client.command.v2.ClientCommandManager.literal;
+import static xyz.imxnoobx.fufuclient.FuFuClient.*;
+
+public class CustomizeHud {
+    public static void register(CommandDispatcher<FabricClientCommandSource> dispatcher) {
+        dispatcher.register(literal("hud")
+                .then(argument("coords", boolean())
+                    .executes(context -> hudInfoCoords(context.getSource())))
+                .then(argument("ip", boolean())
+                    .executes(context -> hudInfoIp(context.getSource())))
+                .then(argument("watermark", boolean())
+                    .executes(context -> hudInfoWatermark(context.getSource())))
+                .then(argument("toggle", boolean())
+                    .executes(context -> hud(context.getSource())))
+        );
+    }
+
+    private static int hudInfoCoords(FabricClientCommandSource source) {
+        hudCoords = !hudCoords;
+        FuFuClient.chatLog("Hud Coordinates: " + (hudCoords ? "\u00a7aEnabled" : "\u00a7cDisabled"));
+        return 1;
+    }
+
+    private static int hudInfoIp(FabricClientCommandSource source) {
+        hudIP = !hudIP;
+        FuFuClient.chatLog("Hud Ip Address: " + (hudIP ? "\u00a7aEnabled" : "\u00a7cDisabled"));
+        return 1;
+    }
+
+    private static int hudInfoWatermark(FabricClientCommandSource source) {
+        hudWatermak = !hudWatermak;
+        FuFuClient.chatLog("Hud Watermak: " + (hudWatermak ? "\u00a7aEnabled" : "\u00a7cDisabled"));
+        return 1;
+    }
+
+    private static int hud(FabricClientCommandSource source) {
+        hud = !hud;
+        FuFuClient.chatLog("Hud Watermak: " + (hudWatermak ? "\u00a7aEnabled" : "\u00a7cDisabled"));
+        return 1;
+    }
+
+}
