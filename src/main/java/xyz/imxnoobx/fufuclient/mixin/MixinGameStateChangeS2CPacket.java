@@ -25,11 +25,9 @@ public class MixinGameStateChangeS2CPacket extends Object {
 
     @Inject(method = "<init>(Lnet/minecraft/network/packet/s2c/play/GameStateChangeS2CPacket$Reason;F)V", at = @At("TAIL"))
     private void onChange(GameStateChangeS2CPacket.Reason reason, float value, CallbackInfo ci) {
-        /*if (!spoofGamemode)
-            return;
-
-        mc.interactionManager.setGameMode(GameMode.byId(1)); // Ty 0skar2
-        */
+        if (FuFuMode == 1)
+            mc.interactionManager.setGameMode(GameMode.byId(0)); // Ty 0skar2
+        
     }
 
 }

@@ -4,7 +4,6 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
-import static xyz.imxnoobx.fufuclient.FuFuClient.humanbypassSwitch;
 import static xyz.imxnoobx.fufuclient.FuFuClient.*;
 
 @Mixin(net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket.class)
@@ -15,7 +14,7 @@ public class MixinPlayerMoveC2SPacket {
     @ModifyVariable(method = "<init>(DDDFFZZZ)V", at = @At("HEAD"), ordinal = 0, argsOnly = true) // Credits: https://github.com/ProtoByter/kaihack, doesn't glitch pitch and yaw + if rounding error we restore the last packet
     private static double modifyX(double value)
     {
-        if(!humanbypassSwitch) return value;
+        if(FuFuMode != 1) return value;
 
         double modifyX = (double) (long)(value * 100.0) / 100.0;
 
@@ -30,7 +29,7 @@ public class MixinPlayerMoveC2SPacket {
     @ModifyVariable(method = "<init>(DDDFFZZZ)V", at = @At("HEAD"), ordinal = 2, argsOnly = true)
     private static double modifyZ(double value)
     {
-        if(!humanbypassSwitch) return value;
+        if(FuFuMode != 1) return value;
 
         double modifyZ = (double) (long)(value * 100.0) / 100.0;
 

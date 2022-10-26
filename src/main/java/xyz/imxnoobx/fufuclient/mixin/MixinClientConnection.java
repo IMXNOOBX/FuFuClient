@@ -31,36 +31,7 @@ public class MixinClientConnection {
     @Shadow private PacketListener packetListener;
 
     @ModifyVariable(method = "sendImmediately", at = @At ("HEAD"), ordinal = 0) // Modify outgoing packets
-    private Packet<?> modifyPacket(Packet<?> packet) { // Credits https://github.com/jokil123/liveoverflow-utility-mod
-
-        /*if (FuFuClient.humanbypassSwitch && packet  instanceof PlayerMoveC2SPacket) {
-            PlayerMoveC2SPacket bypass = (PlayerMoveC2SPacket) packet;
-
-            return new PlayerMoveC2SPacket.Full(
-                    Math.round(bypass.getX(0) * 100.0) / 100.0,
-                    bypass.getY(0),
-                    Math.round(bypass.getZ(0) * 100.0) / 100.0,
-                    FuFuClient.mc.player.getYaw(), // bypass.getYaw(0),
-                    FuFuClient.mc.player.getPitch(), // bypass.getPitch(0),
-                    bypass.isOnGround()
-            );
-        }
-
-        if (FuFuClient.humanbypassSwitch && packet instanceof PlayerPositionLookS2CPacket) {
-            PlayerPositionLookS2CPacket p = (PlayerPositionLookS2CPacket) packet;
-            //FuFuClient.chatLog("Packet Yaw: (" + p.getYaw() + "/"+FuFuClient.mc.player.getYaw()+" / (Pitch: "+ p.getPitch()+"/"+FuFuClient.mc.player.getPitch()+")");
-
-            return new PlayerPositionLookS2CPacket(
-                    Math.round(FuFuClient.mc.player.getX() * 100.0) / 100.0,
-                    FuFuClient.mc.player.getY(),
-                    Math.round(FuFuClient.mc.player.getZ() * 100.0) / 100.0,
-                    FuFuClient.mc.player.getYaw(),
-                    FuFuClient.mc.player.getPitch(),
-                    p.getFlags(),
-                    p.getTeleportId(),
-                    p.shouldDismount()
-            );
-        }*/
+    private Packet<?> modifyPacket(Packet<?> packet) {
 
         return packet;
 
@@ -71,24 +42,6 @@ public class MixinClientConnection {
     public void channelRead0(ChannelHandlerContext channelHandlerContext, Packet<?> packet, CallbackInfo callback) {
         if (this.channel.isOpen() && packet != null) {
 
-
-            /*if (FuFuClient.fakeCreative && packet instanceof PlayerPositionLookS2CPacket) {
-                PlayerPositionLookS2CPacket p = (PlayerPositionLookS2CPacket) packet;
-//                p.getYaw().se= FuFuClient.mc.player.getYaw();
-                // p.pitch = FuFuClient.mc.player.getPitch();
-
-                new PlayerPositionLookS2CPacket(
-                        p.getX(),
-                        p.getY(),
-                        p.getZ(),
-                        FuFuClient.mc.player.getYaw(),
-                        FuFuClient.mc.player.getPitch(),
-                        p.getFlags(),
-                        p.getTeleportId(),
-                        p.shouldDismount()
-                );
-                //FuFuClient.chatLog("Packet Yaw: (" + p.getYaw() + "/"+FuFuClient.mc.player.getYaw()+" / (Pitch: "+ p.getPitch()+"/"+FuFuClient.mc.player.getPitch()+")");
-            }*/
         }
     }
 
@@ -99,21 +52,5 @@ public class MixinClientConnection {
         // https://maven.fabricmc.net/docs/yarn-1.19.2+build.5/net/minecraft/network/ClientConnection.html
         // callback.cancel(); to cancel the packet
 
-        /*if (FuFuClient.humanbypassSwitch && packet instanceof PlayerMoveC2SPacket) {
-            PlayerMoveC2SPacket p = (PlayerMoveC2SPacket) packet;
-                //callback.cancel();
-
-                FuFuClient.mc.player.networkHan dler.sendPacket(
-                    new PlayerMoveC2SPacket.Full(
-                        Math.round(p.getX(0) * 100.0) / 100.0,
-                        p.getY(0),
-                        Math.round(p.getZ(0) * 100.0) / 100.0,
-                        FuFuClient.mc.player.getYaw(), // bypass.getYaw(0),
-                        FuFuClient.mc.player.getPitch(), // bypass.getPitch(0),
-                        p.isOnGround()
-                    )
-                );
-            FuFuClient.chatLog("PlayerMoveC2SPacket: Rewritten");
-        }*/
     }
 }

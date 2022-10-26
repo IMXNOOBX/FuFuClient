@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import xyz.imxnoobx.fufuclient.gui.GameHud;
 
-import static xyz.imxnoobx.fufuclient.FuFuClient.waterMark;
+import static xyz.imxnoobx.fufuclient.FuFuClient.*;
 
 @Environment(EnvType.CLIENT)
 @Mixin(value = InGameHud.class)
@@ -33,7 +33,7 @@ public class MixinGameInfo {
 
     @Inject(method = "render", at = @At("HEAD"))
     private void onDraw(MatrixStack matrixStack, float esp, CallbackInfo ci) {
-        if (waterMark) {
+        if (hud) {
             this.hudInfo.draw(matrixStack);
         }
     }

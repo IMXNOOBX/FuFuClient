@@ -28,13 +28,18 @@ public class FuFuClient implements ModInitializer {
 
 	public static final MinecraftClient mc = MinecraftClient.getInstance();
 
-	public static boolean humanbypassSwitch = false;
+	public static int FuFuMode = 0;
 	public static boolean nightvisionSwitch = false;
-	public static boolean fakeCreative = false;
+	//public static boolean fakeCreative = false;
 	public static boolean flightSwitch = false;
-	public static boolean waterMark = true;
-	public static boolean worldBorder = false;
+	//public static boolean worldBorder = false;
 	public static boolean xRay = false;
+	// hud related
+	public static boolean hud = true;
+	public static boolean hudCoords = true;
+	public static boolean hudIP = true;
+	public static boolean hudWatermak = true;
+
 
 	public void onInitialize() {
 		LOGGER.info("Hello from FuFuClient");
@@ -64,11 +69,11 @@ public class FuFuClient implements ModInitializer {
 	}
 
 	private static void registerCommands(CommandDispatcher<FabricClientCommandSource> commandDispatcher, CommandRegistryAccess commandRegistryAccess) {
-		HumanBypass.register(commandDispatcher);
+		//HumanBypass.register(commandDispatcher);
 		TeleportToCoords.register(commandDispatcher);
-		FakeCreative.register(commandDispatcher);
-		WaterMark.register(commandDispatcher);
-		WorldBorder.register(commandDispatcher);
+		// FakeCreative.register(commandDispatcher);
+		//CustomizeHud.register(commandDispatcher);
+		//WorldBorder.register(commandDispatcher);
 	}
 
 }

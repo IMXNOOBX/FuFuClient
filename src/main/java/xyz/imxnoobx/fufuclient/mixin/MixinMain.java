@@ -14,14 +14,8 @@ import static xyz.imxnoobx.fufuclient.FuFuClient.*;
 
 @Mixin(TitleScreen.class)
 public class MixinMain {
-	@Inject(at = @At("HEAD"), method = "init()V")
-	private void init(CallbackInfo info) {
-		FuFuClient.LOGGER.info("This line is printed by FuFuClient's mixin!");
-	}
-
-
-	/*@Inject(at = @At("HEAD"), method = "tick()V") // only executed in the main menu (TitleScreen)
-	private void onTick(CallbackInfo info) {
-		LOGGER.info("tick executed");
-	}*/
+	// @Inject(at = @At("HEAD"), method = "init()V")
+	// private void init(CallbackInfo info) {
+	// 	FuFuClient.LOGGER.info("This line is printed by FuFuClient's mixin!");
+	// }
 }
