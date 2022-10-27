@@ -10,7 +10,7 @@ import static xyz.imxnoobx.fufuclient.FuFuClient.wgBypass;
 @Mixin(net.minecraft.entity.LivingEntity.class)
 public class MixinLivingEntity {
     @Redirect(method = "tickMovement", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;isImmobile()Z"))
-    private boolean isImmobile(LivingEntity ent) {
+    private boolean isImmobile(LivingEntity ent) { // Blocks player vanilla movements
         return wgBypass;
     }
 }
