@@ -7,6 +7,7 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.text.Text;
 import net.minecraft.world.GameMode;
 import xyz.imxnoobx.fufuclient.FuFuClient;
+import xyz.imxnoobx.fufuclient.modules.WorldGuardBypass;
 import xyz.imxnoobx.fufuclient.modules.xRayModule;
 
 import static xyz.imxnoobx.fufuclient.FuFuClient.*;
@@ -60,12 +61,13 @@ public class OptionsScreen extends Screen {
             if(xRay) xRayModule.onStart(mc); else xRayModule.onDisable(mc);
             clearAndInit();
         }));
-        // addDrawableChild(new ButtonWidget(this.width / 2 - 102, this.height / 6 + BUTTON_VERICAL_SPACING * 4, INGAME_FULL_BUTTON_WIDTH, 20, Text.literal("HumanBypass is " + (humanbypassSwitch ? "\u00a7aEnabled" : "\u00a7cDisabled")), button -> {
-        //     FuFuClient.LOGGER.info("Button Clicked, Toggling HumanBypass!");
-        //     humanbypassSwitch = !humanbypassSwitch;
-        //     clearAndInit();
-        // }));
-        addDrawableChild(new ButtonWidget(this.width - 204 + 10, this.height / 6 + BUTTON_VERICAL_SPACING * 4, INGAME_FULL_BUTTON_WIDTH, 20, Text.literal("Mode " + (FuFuMode == 0 ? "\u00a7cDisabled" : "\u00a7aLiveOverflow")), button -> {
+         addDrawableChild(new ButtonWidget(this.width / 2 - 102, this.height / 6 + BUTTON_VERICAL_SPACING * 4, INGAME_FULL_BUTTON_WIDTH, 20, Text.literal("World Guard Bypass is " + (wgBypass ? "\u00a7aEnabled" : "\u00a7cDisabled")), button -> {
+             FuFuClient.LOGGER.info("Button Clicked, Toggling HumanBypass!");
+             wgBypass = !wgBypass;
+             if(wgBypass) WorldGuardBypass.onStart(mc); else WorldGuardBypass.onDisable(mc);
+             clearAndInit();
+         }));
+        addDrawableChild(new ButtonWidget(this.width - (HALF_BUTTON_WIDTH + 20), 10, HALF_BUTTON_WIDTH + 10, 20, Text.literal("Mode " + (FuFuMode == 0 ? "\u00a7cDisabled" : "\u00a7aLiveOverflow")), button -> {
             FuFuClient.LOGGER.info("Button Clicked, Switching FuFuMode!");
             FuFuMode++; if(FuFuMode > 1) FuFuMode = 0;
 
@@ -83,9 +85,13 @@ public class OptionsScreen extends Screen {
                     mc.world.getWorldBorder().setSize(Integer.MAX_VALUE);
                     mc.world.getWorldBorder().setSafeZone(Integer.MAX_VALUE);
                     FuFuClient.chatLog("WorldBorder Bypass: " + (FuFuMode == 1 ? "\u00a7aEnabled" : "\u00a7cDisabled"));
+
+                    FuFuClient.chatLog("Human Bypass: " + (FuFuMode == 1 ? "\u00a7aEnabled" : "\u00a7cDisabled"));
+
+                    FuFuClient.chatLog("Demo Screen Bypass: " + (FuFuMode == 1 ? "\u00a7aEnabled" : "\u00a7cDisabled"));
                     break;
                 default:
-                    mc.interactionManager.setGameMode(mc.interactionManager.getPreviousGameMode());
+                    mc.interactionManager.setGameMode(GameMode.byId(0)); // mc.interactionManager.setGameMode(mc.interactionManager.getPreviousGameMode()); // forcing survival mode cuz it sets you to creative mode idk why
                     FuFuClient.chatLog("Creative Bypass: " + (FuFuMode == 1 ? "\u00a7aEnabled" : "\u00a7cDisabled"));
 
 
@@ -94,6 +100,10 @@ public class OptionsScreen extends Screen {
                     mc.world.getWorldBorder().setSize(size);
                     mc.world.getWorldBorder().setSafeZone(getSafe);
                     FuFuClient.chatLog("WorldBorder Bypass: " + (FuFuMode == 1 ? "\u00a7aEnabled" : "\u00a7cDisabled"));
+
+                    FuFuClient.chatLog("Human Bypass: " + (FuFuMode == 1 ? "\u00a7aEnabled" : "\u00a7cDisabled"));
+
+                    FuFuClient.chatLog("Demo Screen Bypass: " + (FuFuMode == 1 ? "\u00a7aEnabled" : "\u00a7cDisabled"));
                     break;
             }
             clearAndInit();

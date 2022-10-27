@@ -21,7 +21,8 @@ public class TeleportToCoords {
                         .then(argument("y", integer())
                                 .then(argument("z", integer())
                 .executes(context -> teleporTo(context.getSource(), getInteger(context, "x"), getInteger(context, "y"), getInteger(context, "z")))
-                                ))));
+                                )))
+        );
     }
 
     private static int teleporTo(FabricClientCommandSource source, int x, int y, int z) {

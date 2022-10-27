@@ -9,7 +9,7 @@ import static xyz.imxnoobx.fufuclient.FuFuClient.*;
 public class xRayModule {
 
     private static double gamma;
-    private static boolean nv;
+    private static boolean nv = false;
 
 
     public static void tick(MinecraftClient mc) {
@@ -37,7 +37,7 @@ public class xRayModule {
         mc.worldRenderer.reload();
 
 
-        if(nv)
+        if(nv == true)
             nightvisionSwitch = true; nv = false;
     }
 }
