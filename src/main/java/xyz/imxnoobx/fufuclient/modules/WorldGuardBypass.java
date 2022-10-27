@@ -24,9 +24,10 @@ public class WorldGuardBypass {
         boolean rightKey = mc.options.rightKey.isPressed();
         boolean downKey = mc.options.sneakKey.isPressed();
         boolean upKey = mc.options.sprintKey.isPressed();
+        
         boolean test = mc.options.attackKey.wasPressed();
 
-        mc.player.setVelocity(0, 0, 0);
+        // mc.player.setVelocity(0, 0, 0);
 
         //Vec3d pos = mc.player.getPos();
 
@@ -39,24 +40,24 @@ public class WorldGuardBypass {
         } else if (rightKey) {
             pos = mc.player.getRotationVector().multiply(movement).rotateY(-3.1415927F/2); // new Vec3d(pos.x +1, pos.y, pos.z);
         } else if (downKey) {
-            pos = new Vec3d(pos.x, pos.y + 1, pos.z);
+            pos = pos.add(new Vec3d(0, 1, 0));
         } else if (upKey) {
-            pos = new Vec3d(pos.x, pos.y - 1, pos.z);
+            pos = pos.add(new Vec3d(0, -1, 0));
         }*/
         Vec3d pos = new Vec3d(0, 0, 0);
 
         if(forwardKey) {
-            pos = pos.add(new Vec3d(0, 0, 1));
+            pos = pos.add(new Vec3d(0, 0, 0.5));
         } else if(backwardKey) {
-            pos = pos.add(new Vec3d(0, 0, -1)); // new Vec3d(pos.x, pos.y, pos.z - 1);
+            pos = pos.add(new Vec3d(0, 0, -0.5));
         } else if (leftKey) {
-            pos = pos.add(new Vec3d(-1, 0, 0)); // new Vec3d(pos.x -1, pos.y, pos.z);
+            pos = pos.add(new Vec3d(-0.5, 0, 0));
         } else if (rightKey) {
-            pos = pos.add(new Vec3d(1, 0, 0)); // new Vec3d(pos.x +1, pos.y, pos.z);
+            pos = pos.add(new Vec3d(0.5, 0, 0));
         } else if (downKey) {
-            pos = pos.add(new Vec3d(0, 1, 0));
+            pos = pos.add(new Vec3d(0, -0.5, 0));
         } else if (upKey) {
-            pos = pos.add(new Vec3d(0, -1, 0));
+            pos = pos.add(new Vec3d(0, 0.5, 0));
         }
 
         if(pos.length() <= 0)
@@ -74,14 +75,15 @@ public class WorldGuardBypass {
         pos = pos.multiply(0.05);  // Scale to maxDelta
 
         boolean moveTick = false;
-        Vec3d newPos = new Vec3d(mc.player.getX() + pos.x, mc.player.getY() + pos.y, mc.player.getZ() + pos.z);
-        while (inSameBlock(newPos.add(pos.multiply(1.5)), new Vec3d(mc.player.prevX, mc.player.prevY, mc.player.prevZ))) {
+        Vec3d newPos = new Vec3d(mc.player.getX() + pos.x, mc.player.getY() + pos.y, mc.player.getZ() + pos.z); 
+
+        while (inSameBlock(newPos.add(pos.multiply(1.7)), new Vec3d(mc.player.prevX, mc.player.prevY, mc.player.prevZ))) {
             newPos = newPos.add(pos);
             moveTick = true;
         }
 
         if(forwardKey || backwardKey || leftKey || rightKey || downKey || upKey) {
-            mc.player.setPosition(pos);
+            mc.player.setPosition(newPos);
 
             mc.getNetworkHandler().getConnection().send( //
                     new PlayerMoveC2SPacket.Full(
@@ -99,7 +101,7 @@ public class WorldGuardBypass {
             // mc.player.setPosition(mc.player.getX(), -42069, mc.player.getZ());
             mc.getNetworkHandler().getConnection().send(new PlayerMoveC2SPacket.Full( // make the server teleport you back
                     pos.x,
-                    pos.y + + 1337.0,
+                    pos.y + 1337.0,
                     pos.z,
                     mc.player.getYaw(),
                     mc.player.getPitch(),
