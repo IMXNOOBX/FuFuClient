@@ -8,11 +8,12 @@
   "client": [
     "MixinClientConnection",
     "MixinGameOptionsScreen",
-    "MixinGameStateChangeS2CPacket",
     "MixinGameInfo",
+    "MixinClientPlayerInteractionManager",
     "MixinBlock",
     "MixinMain",
     "MixinWorldBorder",
+    "MixinVehicleMoveC2SPacket",
     "MixinPlayerMoveC2SPacket"
   ],
   "injectors": {

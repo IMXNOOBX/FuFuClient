@@ -22,7 +22,7 @@ public class FuFuClient implements ModInitializer {
 	public static String name = "FuFuClient";
 	public static String colorName = "\u00a75F\u00a7du\u00a75F\u00a7du\u00a79C\u00a7blient\u00a7f";
 	public static String author = "IMXNOOBX";
-	public static String version = "1.1.5";
+	public static String version = "1.1.7";
 	public static String game = "1.19.2";
 	public static final Logger LOGGER = LoggerFactory.getLogger(name);
 
@@ -34,6 +34,7 @@ public class FuFuClient implements ModInitializer {
 	public static boolean flightSwitch = false;
 	//public static boolean worldBorder = false;
 	public static boolean xRay = false;
+	public static boolean wgBypass = false;
 	// hud related
 	public static boolean hud = true;
 	public static boolean hudCoords = true;
@@ -66,13 +67,14 @@ public class FuFuClient implements ModInitializer {
 		Flight.tick(client);
 		NightVision.tick(client);
 		xRayModule.tick(client);
+		WorldGuardBypass.tick(client);
 	}
 
 	private static void registerCommands(CommandDispatcher<FabricClientCommandSource> commandDispatcher, CommandRegistryAccess commandRegistryAccess) {
-		//HumanBypass.register(commandDispatcher);
+		FuFuHelp.register(commandDispatcher);
 		TeleportToCoords.register(commandDispatcher);
-		// FakeCreative.register(commandDispatcher);
-		//CustomizeHud.register(commandDispatcher);
+		FakeGamemode.register(commandDispatcher);
+		CustomizeHud.register(commandDispatcher);
 		//WorldBorder.register(commandDispatcher);
 	}
 

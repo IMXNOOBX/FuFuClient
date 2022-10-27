@@ -93,12 +93,12 @@ public class GameHud {
             String coordsFormat = "%.0f, %.0f, %.0f";
             coordDirectionStatus += String.format(coordsFormat, this.player.getX(), this.player.getY(), this.player.getZ());
 
-            // if (waterMark) {
-            //     coordDirectionStatus += " (" + direction + ")";
-            // }
+            if (hudCoords) {
+                 coordDirectionStatus += " (" + direction + ")";
+            }
+            gameInfo.add("\u00a78Cords: \u00a7f"+coordDirectionStatus);
         }
 
-        gameInfo.add("\u00a78Cords: \u00a7f"+coordDirectionStatus);
 
 
         if (false) {
