@@ -38,10 +38,10 @@ public class WorldGuardBypass {
         } else if (rightKey) {
             pos = pos.add(new Vec3d(0.1, 0, 0));
         } else if (downKey) {
-            pos = pos.add(new Vec3d(0, -0.01, 0));
+            pos = pos.add(new Vec3d(0, -0.1, 0));
         }
         else if (upKey) {
-            pos = pos.add(new Vec3d(0, 0.01, 0));
+            pos = pos.add(new Vec3d(0, 0.1, 0));
         }
 
         if(pos.length() <= 0) // Credits https://github.com/JorianWoltjer/LiveOverflowMod/
@@ -56,19 +56,23 @@ public class WorldGuardBypass {
             pos = new Vec3d(x, pos.y, z);
         }
 
+        if(!mc.player.isOnGround()) {
+            double y = -0.02;
+            pos = new Vec3d(pos.x, y, pos.z);
+        }
+
         pos = pos.multiply(0.05);  // Scale to maxDelta
 
-        Vec3d newPos = new Vec3d(mc.player.getX() + pos.x, mc.player.getY() + pos.y, mc.player.getZ() + pos.z); 
+        Vec3d newPos = new Vec3d(mc.player.getX() + pos.x, mc.player.getY() + pos.y, mc.player.getZ() + pos.z);
 
         // Max: 0.0626
-
-        if ((newPos.x >= mc.player.prevX + 0.05 || newPos.y >= mc.player.prevY + 0.0626|| newPos.z >= mc.player.prevZ + 0.05) || (newPos.x <= mc.player.prevX - 0.05 || newPos.y <= mc.player.prevY - 0.0626 || newPos.z <= mc.player.prevZ - 0.05)) {
+        if ((newPos.x >= mc.player.prevX + 0.05 || newPos.y >= mc.player.prevY + 0.05|| newPos.z >= mc.player.prevZ + 0.05) || (newPos.x <= mc.player.prevX - 0.05 || newPos.y <= mc.player.prevY - 0.05 || newPos.z <= mc.player.prevZ - 0.05)) {
             LOGGER.info("Blocking movement: " + String.format("%.02f", (mc.player.prevX - newPos.x)) + "x " + String.format("%.02f", (mc.player.prevY - newPos.y)) + "y " + String.format("%.02f", (mc.player.prevZ - newPos.z)) + "z , Setting restoreTick to true");
             newPos = newPos.add(pos);
             restoreTick = true;
         }
 
-        if(!restoreTick && (forwardKey || backwardKey || rightKey || leftKey || upKey || downKey)) {
+        if(!restoreTick) { // (forwardKey || backwardKey || rightKey || leftKey || upKey || downKey)
             LOGGER.info("Sending movement packet: " + String.format("%.02f", (mc.player.prevX - newPos.x)) + "x " + String.format("%.02f", (mc.player.prevY - newPos.y)) + "y " + String.format("%.02f", (mc.player.prevZ - newPos.z)) + "z, restoreTick: "+restoreTick);
             mc.getNetworkHandler().getConnection().send(
                     new PlayerMoveC2SPacket.Full(

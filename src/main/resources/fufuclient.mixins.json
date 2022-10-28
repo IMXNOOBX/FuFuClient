@@ -9,10 +9,9 @@
     "MixinClientConnection",
     "MixinGameOptionsScreen",
     "MixinGameInfo",
-    "MixinClientPlayerInteractionManager",
     "MixinBlock",
     "MixinMain",
-    "MixinWorldBorder",
+    "MixinMinecraftClient",
     "MixinVehicleMoveC2SPacket",
     "MixinPlayerMoveC2SPacket"
   ],
