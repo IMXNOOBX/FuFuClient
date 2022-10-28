@@ -38,7 +38,7 @@ public class FuFuClient implements ModInitializer {
 	// hud related
 	public static boolean hud = true;
 	public static boolean hudCoords = true;
-	public static boolean hudIP = true;
+	public static boolean hudIP = false;
 	public static boolean hudWatermak = true;
 
 
@@ -48,7 +48,7 @@ public class FuFuClient implements ModInitializer {
 		ClientCommandRegistrationCallback.EVENT.register(FuFuClient::registerCommands);
 
 		// Open Key
-		KeyBinding modSettingsKey = KeyBindingHelper.registerKeyBinding(new KeyBinding("modsettings.key.open", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_F6, "modsettings.key.category"));
+		KeyBinding modSettingsKey = KeyBindingHelper.registerKeyBinding(new KeyBinding("Open Key", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_F6, "FuFuClient"));
 
 		ClientTickEvents.END_CLIENT_TICK.register(client -> {
 			while (modSettingsKey.wasPressed()) {
