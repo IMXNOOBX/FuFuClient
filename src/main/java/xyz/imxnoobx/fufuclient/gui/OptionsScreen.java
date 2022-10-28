@@ -1,5 +1,8 @@
 package xyz.imxnoobx.fufuclient.gui;
 
+import it.unimi.dsi.fastutil.ints.Int2ObjectArrayMap;
+import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
+
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 
@@ -61,12 +64,12 @@ public class OptionsScreen extends Screen {
             if(xRay) xRayModule.onStart(mc); else xRayModule.onDisable(mc);
             clearAndInit();
         }));
-         addDrawableChild(new ButtonWidget(this.width / 2 - 102, this.height / 6 + BUTTON_VERICAL_SPACING * 4, INGAME_FULL_BUTTON_WIDTH, 20, Text.literal("World Guard Bypass is " + (wgBypass ? "\u00a7aEnabled" : "\u00a7cDisabled")), button -> {
+        addDrawableChild(new ButtonWidget(this.width / 2 - 102, this.height / 6 + BUTTON_VERICAL_SPACING * 4, INGAME_FULL_BUTTON_WIDTH, 20, Text.literal("World Guard Bypass is " + (wgBypass ? "\u00a7aEnabled" : "\u00a7cDisabled")), button -> {
              FuFuClient.LOGGER.info("Button Clicked, Toggling HumanBypass!");
              wgBypass = !wgBypass;
              if(wgBypass) WorldGuardBypass.onStart(mc); else WorldGuardBypass.onDisable(mc);
              clearAndInit();
-         }));
+        }));
         addDrawableChild(new ButtonWidget(this.width - (HALF_BUTTON_WIDTH + 20), 10, HALF_BUTTON_WIDTH + 10, 20, Text.literal("Mode " + (FuFuMode == 0 ? "\u00a7cDisabled" : "\u00a7aLiveOverflow")), button -> {
             FuFuClient.LOGGER.info("Button Clicked, Switching FuFuMode!");
             FuFuMode++; if(FuFuMode > 1) FuFuMode = 0;

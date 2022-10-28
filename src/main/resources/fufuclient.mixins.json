@@ -13,7 +13,6 @@
     "MixinBlock",
     "MixinMain",
     "MixinWorldBorder",
-    "MixinLivingEntity",
     "MixinVehicleMoveC2SPacket",
     "MixinPlayerMoveC2SPacket"
   ],
