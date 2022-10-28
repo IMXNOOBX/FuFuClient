@@ -27,6 +27,12 @@ public class TeleportToCoords {
 
     private static int teleporTo(FabricClientCommandSource source, int x, int y, int z) {
         //mc.player.setPosition(mc.player.getX() + x, mc.player.getY() + y, mc.player.getZ() + z);
+        if (x == 0)
+            x = (int) mc.player.getX();
+        if(y == 0)
+            y = (int) mc.player.getY();
+        if(z == 0)
+            z = (int) mc.player.getZ();
         mc.player.setPosition(x, y, z);
         String formatCoords = String.format("%.0fx, %.0fy, %.0fz", mc.player.getX() + x, mc.player.getY() + y, mc.player.getZ() + z);
 

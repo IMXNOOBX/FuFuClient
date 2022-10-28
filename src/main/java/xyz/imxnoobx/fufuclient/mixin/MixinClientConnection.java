@@ -10,8 +10,7 @@ import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.listener.PacketListener;
 import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
 import net.minecraft.network.packet.c2s.play.VehicleMoveC2SPacket;
-import net.minecraft.network.packet.s2c.play.EntityPositionS2CPacket;
-import net.minecraft.network.packet.s2c.play.PlayerPositionLookS2CPacket;
+import net.minecraft.network.packet.s2c.play.*;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -39,11 +38,11 @@ public class MixinClientConnection {
     private Packet<?> modifyPacket(Packet<?> packet) {
 
         if (FuFuMode == 1 && packet instanceof VehicleMoveC2SPacket) {
-            VehicleMoveC2SPacket bypass = (VehicleMoveC2SPacket) packet;
+            VehicleMoveC2SPacket pkt = (VehicleMoveC2SPacket) packet;
 
             Entity vehicle = FuFuClient.mc.player.getVehicle();
 
-            vehicle.setPos((double) (long)(bypass.getX() * 100.0) / 100.0, bypass.getY(), (double) (long)(bypass.getZ() * 100.0) / 100.0); // Hope this works
+            vehicle.setPos((double) (long)(pkt.getX() * 100.0) / 100.0, pkt.getY(), (double) (long)(pkt.getZ() * 100.0) / 100.0); // Hope this works
 
             return new VehicleMoveC2SPacket(
                     vehicle
@@ -55,10 +54,33 @@ public class MixinClientConnection {
     }
 
     // Read: Incoming packets
-    @Inject(method = "channelRead0", at = @At("HEAD"), cancellable = true)
-    public void channelRead0(ChannelHandlerContext channelHandlerContext, Packet<?> packet, CallbackInfo callback) {
-        if (this.channel.isOpen() && packet != null) {
+    @Inject(method = "handlePacket", at = @At("HEAD"), cancellable = true)
+    private static <T extends PacketListener> void handlePacket(Packet<T> packet, PacketListener listener, CallbackInfo callback) {
 
+        if(FuFuMode == 1) {
+            if (packet instanceof GameStateChangeS2CPacket) {
+                GameStateChangeS2CPacket pkt = (GameStateChangeS2CPacket) packet;
+
+                if (pkt.getReason().equals(GameStateChangeS2CPacket.DEMO_MESSAGE_SHOWN)/* || pkt.getValue() == 104*/) {
+                    LOGGER.info("GameStateChangeS2CPacket called with reason DEMO_MESSAGE_SHOWN and callback blocked!");
+                    callback.cancel();
+                }
+
+                if (pkt.getReason().equals(GameStateChangeS2CPacket.GAME_MODE_CHANGED)) {
+                    LOGGER.info("GameStateChangeS2CPacket called with reason GAME_MODE_CHANGED and callback blocked!");
+                    callback.cancel();
+                }
+            }
+
+            if(packet instanceof WorldBorderSizeChangedS2CPacket){
+                LOGGER.info("WorldBorderSizeChangedS2CPacket called and callback blocked!");
+                callback.cancel();
+            }
+
+            if(packet instanceof WorldBorderInitializeS2CPacket){
+                LOGGER.info("WorldBorderInitializeS2CPacket called and callback blocked!");
+                callback.cancel();
+            }
         }
     }
 

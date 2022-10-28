@@ -15,9 +15,10 @@ A BlockGame client mod I made with the purpose of learning java and playing in L
 
 # 📣 Whats New
 
-> 1.1.7 - Changed some features to improove the look, soon more updates!!!<br>
+> 1.1.8 - Code cleanup and some improvements<br>
+> 1.1.7 - Changed some features to improve the look, soon more updates!!!<br>
 > 1.1.5 - Fixed many issues, implemented kaihack's bypass, improved xray<br>
-> 1.1.4 - Added watermak, coordinates, server... while in game<br>
+> 1.1.4 - Added watermark, coordinates, server... while in game<br>
 > 1.1.3 - Added some chat commands, fixed flight anti kick<br>
 > 1.1.2 - Added some new features, NightVision, Flight<br>
 > 1.1.1 - Fixed issue with .gitignore file ignoring gradle-wrapper.jar<br>
