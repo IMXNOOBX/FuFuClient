@@ -43,8 +43,7 @@ A BlockGame client mod I made with the purpose of learning java and playing in L
                         ip: enables/disables the IP in the hud. Hoping to not leak the server ip again :D
                         watermak: enables/disables the coolest watermark ever.
 - To Do
-    • WorldBorder Bypass - So you can interact and dont die outside it.
-	• More ideas when i get the ip to join the server :c
+	... 
 ```
 
 ## 🪁 Simple Use
